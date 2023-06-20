@@ -2,16 +2,20 @@ const navEmail = document.querySelector('.navbar-email');
 const desktopMenu = document.querySelector('.desktop-menu');
 const menuCartIcon = document.querySelector('.navbar-shopping-cart');
 const mainContainer = document.querySelector('.main-container');
+const productDetailCloseIcon = document.querySelector('.product-detail-close');
 
 
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuHamIcon = document.querySelector('.menu');
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
+const productDetailContainer = document.querySelector('#productDetail');
+const cardsContainer = document.querySelector('.cards-container');
 
 
 navEmail.addEventListener('click', toggleEmailMenu);
 menuHamIcon.addEventListener('click', toggleMobileMenu);
 menuCartIcon.addEventListener('click', toggleCartAside);
+productDetailCloseIcon.addEventListener('click',closeProductDetailAside);
 
 function toggleEmailMenu(){
     desktopMenu.classList.toggle('inactive'); 
@@ -21,13 +25,25 @@ function toggleEmailMenu(){
 function toggleMobileMenu(){
     mobileMenu.classList.toggle('inactive');
     shoppingCartContainer.classList.add('inactive');
+    closeProductDetailAside();
 }
 
 function toggleCartAside(){
     shoppingCartContainer.classList.toggle('inactive');
     desktopMenu.classList.add('inactive');
     mobileMenu.classList.add('inactive');
+    productDetailContainer.classList.add('inactive');
 }
+
+function openProductDetailAside() {
+    shoppingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.remove('inactive');
+  }
+  
+  function closeProductDetailAside() {
+    productDetailContainer.classList.add('inactive');
+
+  }
 
 const productList = [];
 productList.push({
@@ -47,7 +63,6 @@ productList.push({
 });
 
 
-const cardscontainer = document.querySelector('.cards-container');
 function renderProducts(arr) {
     for (product of arr){
         
@@ -57,6 +72,7 @@ function renderProducts(arr) {
         // product= {name, price, image} -> product.image
         const productImg = document.createElement('img');
         productImg.setAttribute('src', product.image);
+        productImg.addEventListener('click', openProductDetailAside);
       
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
@@ -83,7 +99,7 @@ function renderProducts(arr) {
         productCard.appendChild(productImg);
         productCard.appendChild(productInfo);
       
-        cardscontainer.appendChild(productCard);
+        cardsContainer.appendChild(productCard);
     }
 }
 
