@@ -6,7 +6,7 @@ const mainContainer = document.querySelector('.main-container');
 
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuHamIcon = document.querySelector('.menu');
-const aside = document.querySelector('.product-detail');
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
 
 
 navEmail.addEventListener('click', toggleEmailMenu);
@@ -15,16 +15,16 @@ menuCartIcon.addEventListener('click', toggleCartAside);
 
 function toggleEmailMenu(){
     desktopMenu.classList.toggle('inactive'); 
-    aside.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
 }
 
 function toggleMobileMenu(){
     mobileMenu.classList.toggle('inactive');
-    aside.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
 }
 
 function toggleCartAside(){
-    aside.classList.toggle('inactive');
+    shoppingCartContainer.classList.toggle('inactive');
     desktopMenu.classList.add('inactive');
     mobileMenu.classList.add('inactive');
 }
